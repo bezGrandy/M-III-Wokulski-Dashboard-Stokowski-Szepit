@@ -22,7 +22,7 @@ fun ExpenseForm(
     onAddExpense: (name: String, amount: Double, category: String, isOptional: Boolean) -> Unit
 ) {
     var name by remember { mutableStateOf("") }
-
+    var amount by remember { mutableStateOf("") }
 
     Column(modifier = Modifier.padding(16.dp)) {
 
@@ -38,5 +38,14 @@ fun ExpenseForm(
         )
 
         Spacer(modifier = Modifier.height(8.dp))
-        }
+
+        OutlinedTextField(
+            value = amount,
+            onValueChange = { amount = it },
+            label = { Text("Kwota") },
+            modifier = Modifier.fillMaxWidth()
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
     }
+}
