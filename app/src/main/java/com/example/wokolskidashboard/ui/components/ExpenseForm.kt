@@ -35,5 +35,20 @@ fun ExpenseForm(
             label = { Text("Kwota") },
             modifier = Modifier.fillMaxWidth()
         )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Button(
+            onClick = {
+                val amountDouble = amount.toDoubleOrNull() ?: return@Button
+                onAddExpense(name, amountDouble, category, isNecessary)
+
+                name = ""
+                amount = ""
+            },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Zapisz wydatek")
+        }
     }
 }
