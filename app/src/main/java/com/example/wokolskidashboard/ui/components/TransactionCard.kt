@@ -1,12 +1,7 @@
-package com.example.wokolskidashboard.ui.components
+package com.example.wokulskidashboard.ui.components
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Card
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -15,28 +10,43 @@ import com.example.wokolskidashboard.model.Transaction
 @Composable
 fun TransactionCard(transaction: Transaction) {
 
-    val color = if (transaction.isExpense)
+    val isExpense = transaction.isExpense
+
+    val color = if (isExpense)
         MaterialTheme.colorScheme.error
     else
         MaterialTheme.colorScheme.primary
 
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp)
+        modifier = Modifier.fillMaxWidth(),
+        elevation = CardDefaults.cardElevation(4.dp)
     ) {
         Row(
-            modifier = Modifier.padding(16.dp),
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(text = transaction.name)
+
+            Column {
+                Text(
+                    text = transaction.name,
+                    style = MaterialTheme.typography.bodyLarge
+                )
+
+                Text(
+                    text = if (isExpense) "Wydatek" else "Przychód",
+                    style = MaterialTheme.typography.labelSmall
+                )
+            }
 
             Text(
-                text = if (transaction.isExpense)
-                    "-${transaction.amount}"
+                text = if (isExpense)
+                    "-%.2f".format(transaction.amount)
                 else
-                    "+${transaction.amount}",
-                color = color
+                    "+%.2f".format(transaction.amount),
+                color = color,
+                style = MaterialTheme.typography.bodyLarge
             )
         }
     }

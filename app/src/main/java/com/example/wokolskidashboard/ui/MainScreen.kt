@@ -17,8 +17,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.wokolskidashboard.model.Transaction
-import com.example.wokolskidashboard.ui.components.ExpenseForm
-import com.example.wokolskidashboard.ui.components.TransactionCard
+import com.example.wokulskidashboard.ui.components.ExpenseForm
+import com.example.wokulskidashboard.ui.components.TransactionCard
 
 @Composable
 fun MainScreen() {
@@ -42,7 +42,7 @@ fun MainScreen() {
         )
 
         ExpenseForm(
-            onAddExpense = { name, amount, category, isNecessary ->
+            onAddExpense = { name, amount, category ->
                 transactions.add(
                     Transaction("$name ($category)", amount, true)
                 )
