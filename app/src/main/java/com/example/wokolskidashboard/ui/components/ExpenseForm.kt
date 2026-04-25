@@ -36,6 +36,30 @@ fun ExpenseForm(
             modifier = Modifier.fillMaxWidth()
         )
 
+        var expanded by remember { mutableStateOf(false) }
+        val categories = listOf("Sklep", "Kamienica", "Wydatki Osobiste")
+
+        Box {
+            OutlinedButton(onClick = { expanded = true }) {
+                Text(category)
+            }
+
+            DropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false }
+            ) {
+                categories.forEach {
+                    DropdownMenuItem(
+                        text = { Text(it) },
+                        onClick = {
+                            category = it
+                            expanded = false
+                        }
+                    )
+                }
+            }
+        }
+
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
