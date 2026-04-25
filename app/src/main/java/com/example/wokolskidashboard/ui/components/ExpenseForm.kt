@@ -13,6 +13,7 @@ fun ExpenseForm(
     var amount by remember { mutableStateOf("") }
     var category by remember { mutableStateOf("Wydatki Osobiste") }
     var isNecessary by remember { mutableStateOf(true) }
+    var isError by remember { mutableStateOf(false) }
 
     Column(modifier = Modifier.padding(16.dp)) {
 
@@ -64,14 +65,21 @@ fun ExpenseForm(
 
         Button(
             onClick = {
-                val amountDouble = amount.toDoubleOrNull() ?: return@Button
+                val amountDouble = amount.toDoubleOrNull()
+
+                if (name.isBlank() || amountDouble == null || amountDouble <= 0) {
+                    isError = true
+                    return@Button
+                }
+
                 onAddExpense(name, amountDouble, category, isNecessary)
 
                 name = ""
                 amount = ""
-            },
-            modifier = Modifier.fillMaxWidth()
-        ) {
+                isError = false
+            }
+        )
+        {
             Text("Zapisz wydatek")
         }
     }
