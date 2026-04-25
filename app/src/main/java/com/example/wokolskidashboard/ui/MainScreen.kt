@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,31 +26,32 @@ fun MainScreen() {
     }
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
+        modifier = Modifier.fillMaxSize()
     ) {
 
         Text(
             text = "Saldo: %.2f Rubli".format(balance),
-            style = MaterialTheme.typography.headlineMedium
+            style = MaterialTheme.typography.headlineMedium,
+            modifier = Modifier
+                .statusBarsPadding()
+                .padding(16.dp)
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
-    }
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp)
+        ) {
 
-    ExpenseForm(
-        onAddExpense = { name, amount, category, isNecessary ->
-
-            transactions.add(
-                Transaction(
-                    name = "$name ($category)",
-                    amount = amount,
-                    isExpense = true
-                )
+            ExpenseForm(
+                onAddExpense = { name, amount, category, isNecessary ->
+                    transactions.add(
+                        Transaction("$name ($category)", amount, true)
+                    )
+                }
             )
-        }
-    )
 
-    Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(16.dp))
+        }
+    }
 }
