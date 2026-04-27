@@ -17,6 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.wokolskidashboard.model.Transaction
+import com.example.wokolskidashboard.ui.components.IncomeForm
 import com.example.wokulskidashboard.ui.components.ExpenseForm
 import com.example.wokulskidashboard.ui.components.TransactionCard
 
@@ -46,6 +47,18 @@ fun MainScreen() {
                 transactions.add(
                     Transaction("$name ($category)", amount, true)
                 )
+            }
+        )
+
+        IncomeForm(
+            onAddIncome = { incomeName, incomeAmount ->
+
+                val newIncome = Transaction(
+                    name = incomeName,
+                    amount = incomeAmount,
+                    isExpense = false
+                )
+                transactions.add(newIncome)
             }
         )
 

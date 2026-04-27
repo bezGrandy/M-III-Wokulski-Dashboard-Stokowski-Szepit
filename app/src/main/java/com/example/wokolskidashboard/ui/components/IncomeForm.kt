@@ -24,7 +24,7 @@ fun IncomeForm(
         androidx.compose.material3.OutlinedTextField(
             value = name,
             onValueChange = { name = it },
-            label = { Text("Nazwa towaru (np. Parasol)") },
+            label = { Text("Nazwa towaru") },
             modifier = Modifier.fillMaxWidth()
         )
 
