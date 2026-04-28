@@ -2,9 +2,11 @@ package com.example.wokolskidashboard.ui.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color.Companion.Red
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -21,7 +23,7 @@ fun IncomeForm(
         Text(text = "Zysk ze sprzedaży")
 
 
-        androidx.compose.material3.OutlinedTextField(
+        OutlinedTextField(
             value = name,
             onValueChange = { name = it },
             label = { Text("Nazwa towaru") },
@@ -30,7 +32,7 @@ fun IncomeForm(
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        androidx.compose.material3.OutlinedTextField(
+        OutlinedTextField(
             value = amountString,
             onValueChange = { amountString = it },
             label = { Text("Kwota (w rublach)") },
@@ -39,7 +41,7 @@ fun IncomeForm(
 
 
         errorMessage?.let {
-            Text(text = it, color = androidx.compose.ui.graphics.Color.Red)
+            Text(text = it, color = Red)
         }
 
         Spacer(modifier = Modifier.height(16.dp))

@@ -52,7 +52,6 @@ fun MainScreen() {
 
         IncomeForm(
             onAddIncome = { incomeName, incomeAmount ->
-
                 val newIncome = Transaction(
                     name = incomeName,
                     amount = incomeAmount,
